@@ -22,7 +22,7 @@ const spawnDetached = dbPath => {
 
   // 監聽內建的 error 事件(啟動失敗時觸發)
   connector.on('error', error => {
-    console.error('❌ Failed to start aiMediaConnector:', error.message)
+    console.error('❌ aiMediaConnector 啟動失敗:', error.message)
   })
 }
 

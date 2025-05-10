@@ -7,7 +7,7 @@ const { spawnDetached } = require('../../utils')
 const dbDir = path.resolve('db')
 
 const run = () => {
-  console.log('🚀 Running aiMediaConnector')
+  console.log('🚀 執行 aiMediaConnector')
 
   spawnDetached(path.join(dbDir, 'line.db'))
 }

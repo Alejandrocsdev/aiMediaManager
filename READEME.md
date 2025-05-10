@@ -34,7 +34,7 @@ nvm alias default lts/*
 chmod +x .aiMediaConnector/aiMediaConnector
 ```
 
-## 🚀 執行指令
+## 🚀 執行指令 (參閱指令說明)
 ```bash
-node aiMediaManager.js
+node aiMediaManager.js help
 ```
