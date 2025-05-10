@@ -1,0 +1,7 @@
+aiMediaManager CLI 
+
+node aiMediaManager.js <command>
+
+Commands:
+  help                顯示指令說明
+  run                 使用 db/ 資料夾中找到的第一個 .db 檔案執行 aiMediaConnector
