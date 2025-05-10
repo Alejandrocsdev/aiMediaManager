@@ -24,6 +24,8 @@ const spawnDetached = dbPath => {
   connector.on('error', error => {
     console.error('❌ aiMediaConnector 啟動失敗:', error.message)
   })
+
+  return connector
 }
 
 module.exports = { spawnDetached }
