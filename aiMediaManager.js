@@ -1,6 +1,6 @@
-const path = require('path')
-
 const { aiMediaManager } = require('./.main')
 const { safeRun } = require('./.main/utils')
 
-safeRun(() => aiMediaManager(path.resolve('db', 'line.db')))
+const command = process.argv[2]
+
+safeRun(() => aiMediaManager(command))

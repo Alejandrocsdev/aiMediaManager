@@ -1,5 +1,5 @@
-const { spawnDetached } = require('./utils')
+const commands = require('./commands')
 
-const aiMediaManager = dbPath => spawnDetached(dbPath)
+const aiMediaManager = command => commands(command)
 
 module.exports = { aiMediaManager }
