@@ -13,7 +13,7 @@ const getFilePaths = (dir, ext, command) => {
 
   const files = fs.readdirSync(dir, { withFileTypes: true })
 
-  const matchFiles = (entry) => {
+  const matchFiles = entry => {
     const filePath = path.join(dir, entry.name)
 
     if (entry.isFile() && entry.name.endsWith(ext)) {
@@ -21,18 +21,19 @@ const getFilePaths = (dir, ext, command) => {
     }
   }
 
-  if (command === 'all') {
+  if (command === 'all' || command === 'list') {
     files.forEach(entry => matchFiles(entry))
-    return paths
+  } else {
+    const index = Number(command)
+    if (!Number.isInteger(index)) throw new Error(`❌ 無效的檔案索引: "${command}"`)
+
+    const file = files[index]
+    if (!file) throw new Error(`❌ 找不到索引 ${index} 對應的 ${ext} 檔案`)
+
+    matchFiles(file)
   }
 
-  const index = Number(command)
-  if (!Number.isInteger(index)) throw new Error(`❌ 無效的檔案索引: "${command}"`)
-
-  const file = files[index]
-  if (!file) throw new Error(`❌ 找不到索引 ${index} 對應的 ${ext} 檔案`)
-
-  matchFiles(file)
+  if (paths.length === 0) throw new Error(`缺少 ${ext} 檔`)
 
   return paths
 }
