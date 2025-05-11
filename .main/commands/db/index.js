@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 
 // 自訂工具函式
-const { ensureDirs, loadJson, getFilePaths } = require('../../utils')
+const { ensureDirs, loadJson, getFilePaths, logList } = require('../../utils')
 
 // 定義資料夾路徑
 const dbDir = path.resolve('db')
@@ -12,6 +12,12 @@ const videoDir = path.resolve('video')
 ensureDirs([dbDir, videoDir])
 
 const db = command => {
+  if (command === 'list') {
+    const dbFiles = getFilePaths(dbDir, '.db', command)
+    logList(dbFiles)
+    return
+  }
+
   // 讀取模板
   const mainTemplate = loadJson(path.resolve('.main', 'template', 'main.json'))
   const lineTemplate = loadJson(path.resolve('.main', 'template', 'algorithm', 'line.json'))
@@ -24,7 +30,6 @@ const db = command => {
 
   // 影片路徑
   const videoFiles = getFilePaths(videoDir, videoType, command)
-  if (videoFiles.length === 0) throw new Error(`缺少 ${videoType} 影片檔`)
 
   // 記錄此次執行實際產生的 db 檔案數量
   let dbCount = 0

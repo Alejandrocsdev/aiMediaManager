@@ -14,7 +14,6 @@ const run = (command = 0) => {
 
   // db 設定檔路徑
   const dbFiles = getFilePaths(dbDir, '.db', command)
-  if (dbFiles.length === 0) throw new Error('缺少 .db 設定檔')
 
   const dbPath = dbFiles[0]
 

@@ -3,4 +3,5 @@
 video/
 db/
 # 取消忽略
+!.main/commands/video/
 !.main/commands/db/
