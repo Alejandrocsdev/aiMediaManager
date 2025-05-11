@@ -1,0 +1,17 @@
+{
+  "show_video": true,
+  "enable_log": false,
+  "video_type": "mp4",
+  "cross_line": [
+    {
+      "line_start": {
+        "x": 474,
+        "y": 232
+      },
+      "line_end": {
+        "x": 548,
+        "y": 716
+      }
+    }
+  ]
+}

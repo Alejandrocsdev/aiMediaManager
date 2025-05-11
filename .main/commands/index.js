@@ -1,5 +1,6 @@
 const help = require('./help')
 const run = require('./run')
+const db = require('./db')
 
 const commands = async argv => {
   try {
@@ -19,6 +20,8 @@ const commands = async argv => {
         return help()
       case 'run':
         return run()
+      case 'db:all':
+        return db('all')
     }
 
     throw new Error(`❌ 不支援或格式錯誤的指令: "${command}"`)

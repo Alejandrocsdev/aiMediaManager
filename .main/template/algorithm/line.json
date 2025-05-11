@@ -1,0 +1,16 @@
+{
+  "uuid": "",
+  "cross_direction": "",
+  "need_attributes": false,
+  "face_detect_threshold": 0,
+  "report_image": false,
+  "show_line": false,
+  "line_color": {
+    "r": 0,
+    "g": 0,
+    "b": 0
+  },
+  "line_caption": "",
+  "line_start": {},
+  "line_end": {}
+}

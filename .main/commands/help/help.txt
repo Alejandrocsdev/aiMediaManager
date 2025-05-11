@@ -5,3 +5,4 @@ node aiMediaManager.js <command>
 Commands:
   help                顯示指令說明
   run                 使用 db/ 資料夾中找到的第一個 .db 檔案執行 aiMediaConnector
+  db:all              根據 video 資料夾中的全部影片檔案產生對應的 .db 設定檔

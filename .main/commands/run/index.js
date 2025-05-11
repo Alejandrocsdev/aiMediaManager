@@ -1,13 +1,13 @@
 const path = require('path')
 
 // 自訂工具函式
-const { ensureDir, getFilePaths, spawnDetached } = require('../../utils')
+const { ensureDirs, getFilePaths, spawnDetached } = require('../../utils')
 
 // 定義資料夾路徑
 const dbDir = path.resolve('db')
 
 // 確保資料夾存在
-ensureDir(dbDir)
+ensureDirs([dbDir])
 
 const run = (command = 0) => {
   console.log('🚀 執行 aiMediaConnector')
