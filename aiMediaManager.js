@@ -1,4 +1,4 @@
-const { aiMediaManager } = require('./.main')
-const { safeRun } = require('./.main/utils')
+const { aiMediaManager } = require('./src')
+const { safeRun } = require('./src/utils')
 
 safeRun(() => aiMediaManager(process.argv))

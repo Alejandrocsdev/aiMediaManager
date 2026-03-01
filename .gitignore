@@ -1,7 +1,5 @@
-# 忽略
-.aiMediaConnector/
-video/
-db/
-# 取消忽略
-!.main/commands/video/
-!.main/commands/db/
+video/test-01.mp4
+src/engine/drawLine
+src/engine/aiMediaConnector
+src/engine/library/*
+!src/engine/library/library.txt
