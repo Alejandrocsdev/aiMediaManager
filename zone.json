@@ -1,0 +1,12 @@
+{
+  "normal_bold": 10,
+  "normal_color": "green",
+  "alert_bold": 15,
+  "alert_color": "red",
+  "polygon": [
+    { "x": 386, "y": 198 },
+    { "x": 248, "y": 916 },
+    { "x": 1460, "y": 934 },
+    { "x": 1234, "y": 200 }
+  ]
+}

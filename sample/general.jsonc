@@ -1,0 +1,28 @@
+{
+	// 顯示影片
+	"show": true,
+
+	// 生成紀錄
+	"enable_log": true,
+	
+  // 影片縮放比例
+  "ratio": 0.5,
+
+  // 使用GPU
+  "use_gpu": true,
+
+  // 影像幀率
+  "fps": 30,
+
+  // 目標方框最小邊長(px)
+  "object_min_length": 50,
+
+  // 偵測頻率(ms)
+  "capture_interval": 100,
+
+  // 人形偵測閥值
+  "object_detect_threshold": 0.3,
+  
+  // 目標方框顏色(black, white, red, green, blue)
+  "object_color": "black"
+}

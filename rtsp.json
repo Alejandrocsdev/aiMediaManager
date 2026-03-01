@@ -3,5 +3,5 @@
   "port": 554,
   "username": "admin",
   "password": "Az123456",
-  "streamPath": ""
+  "streamPath": "/"
 }

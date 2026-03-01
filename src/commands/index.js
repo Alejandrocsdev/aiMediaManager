@@ -1,3 +1,4 @@
+const db = require('./db');
 const draw = require('./draw');
 
 const commands = (argv) => {
@@ -22,6 +23,14 @@ const commands = (argv) => {
       return draw('file');
     case 'draw:rtsp':
       return draw('rtsp');
+    case 'db:line:file':
+      return db('line:file');
+    case 'db:line:rtsp':
+      return db('line:rtsp');
+    case 'db:zone:file':
+      return db('zone:file');
+    case 'db:zone:rtsp':
+      return db('zone:rtsp');
   }
   throw new Error(`❌ Unknown or malformed command: "${command}"`);
 };

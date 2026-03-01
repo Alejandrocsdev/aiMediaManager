@@ -1,0 +1,11 @@
+{
+	"show": true,
+	"enable_log": true,
+  "ratio": 0.5,
+  "use_gpu": true,
+  "fps": 30,
+  "object_min_length": 50,
+  "capture_interval": 100,
+  "object_detect_threshold": 0.3,
+  "object_color": "black"
+}

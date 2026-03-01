@@ -1,0 +1,21 @@
+{
+  // 區域線條寬度(px)
+  "normal_bold": 10,
+
+  // 區域顏色(black, white, yellow, red, green, blue)
+  "normal_color": "green",
+
+  // 警報區域線條寬度(px)
+  "alert_bold": 15,
+
+  // 警報區域顏色(black, white, yellow, red, green, blue)
+  "alert_color": "red",
+
+	// 區域多邊形座標點陣列，至少3點
+  "polygon": [
+    { "x": 386, "y": 198 },
+    { "x": 248, "y": 916 },
+    { "x": 1460, "y": 934 },
+    { "x": 1234, "y": 200 }
+  ]
+}

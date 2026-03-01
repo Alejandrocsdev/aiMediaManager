@@ -1,0 +1,16 @@
+[
+  {
+    "line_caption": "One",
+    "line_start": { "x": 0, "y": 100 },
+    "line_end": { "x": 100, "y": 200 },
+    "line_color": "black",
+    "cross_direction": "DIRECTION_DEFAULT"
+  },
+	{
+    "line_caption": "Two",
+    "line_start": { "x": 200, "y": 100 },
+    "line_end": { "x": 300, "y": 200 },
+    "line_color": "blue",
+    "cross_direction": "DIRECTION_REVERSE"
+  }
+]

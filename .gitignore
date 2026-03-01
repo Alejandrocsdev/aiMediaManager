@@ -1,4 +1,5 @@
 video/test-01.mp4
+src/engine/draw.log
 src/engine/drawLine
 src/engine/aiMediaConnector
 src/engine/library/*

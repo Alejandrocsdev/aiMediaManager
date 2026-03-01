@@ -8,7 +8,9 @@ const draw = (mode) => {
   const root = process.cwd();
 
   const videoDir = path.join(root, 'video');
+	
   const rtspPath = path.join(root, 'rtsp.json');
+  const generalPath = path.join(root, 'general.json');
 
   const engineDir = path.join(root, 'src', 'engine');
   const drawLinePath = path.join(engineDir, 'drawLine');
@@ -27,7 +29,15 @@ const draw = (mode) => {
     return;
   }
 
-  const ratio = 0.5;
+  if (!fs.existsSync(generalPath)) {
+    console.log('❌ No general.json found');
+    return;
+  }
+
+  const general = JSON.parse(fs.readFileSync(generalPath, 'utf8'));
+
+  const ratio = general.ratio;
+
   let dbContent;
 
   // FILE MODE
