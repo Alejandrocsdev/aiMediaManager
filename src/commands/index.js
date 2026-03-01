@@ -23,6 +23,10 @@ const commands = (argv) => {
       return draw('file');
     case 'draw:rtsp':
       return draw('rtsp');
+    case 'db:list:file':
+      return db('list:file');
+    case 'db:list:rtsp':
+      return db('list:rtsp');
     case 'db:line:file':
       return db('line:file');
     case 'db:line:rtsp':

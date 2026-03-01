@@ -1,32 +1,73 @@
 const fs = require('fs');
 const path = require('path');
-const { spawn } = require('child_process');
 
-const { rgb, isVideo } = require('../utils');
+const { rgb, timestamp, isVideo } = require('../utils');
+
+const removeEmptyTxt = (dir) => {
+  const file = path.join(dir, 'empty.txt');
+  if (fs.existsSync(file)) {
+    fs.unlinkSync(file);
+  }
+};
+
+const ensureDir = (dir) => {
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+};
+
+const listDbFiles = (dir) => {
+  if (!fs.existsSync(dir)) {
+    console.log('No DB folder found');
+    return;
+  }
+
+  const files = fs.readdirSync(dir).filter((f) => f.endsWith('.db'));
+
+  if (!files.length) {
+    console.log('No DB files found');
+    return;
+  }
+
+  files.forEach((f, i) => {
+    console.log(`[${i}] ${f}`);
+  });
+};
 
 const db = (mode) => {
   const root = process.cwd();
 
   const videoDir = path.join(root, 'video');
-  const dbDir = path.join(root, 'db');
+  removeEmptyTxt(videoDir);
+
+  const dbRoot = path.join(root, 'db');
+  removeEmptyTxt(dbRoot);
+
+  const dbFileDir = path.join(dbRoot, 'file');
+  const dbRtspDir = path.join(dbRoot, 'rtsp');
 
   const linePath = path.join(root, 'line.json');
   const zonePath = path.join(root, 'zone.json');
   const rtspPath = path.join(root, 'rtsp.json');
   const generalPath = path.join(root, 'general.json');
 
-  if (!fs.existsSync(dbDir)) {
-    fs.mkdirSync(dbDir);
+  const [type, source] = mode.split(':');
+
+  // LIST MODE → list existing DB files
+  if (type === 'list') {
+    if (source === 'file') return listDbFiles(dbFileDir);
+    if (source === 'rtsp') return listDbFiles(dbRtspDir);
+    throw new Error('❌ Invalid list mode');
   }
 
   const general = JSON.parse(fs.readFileSync(generalPath, 'utf8'));
-
-  const [type, source] = mode.split(':');
 
   let sourceList = [];
 
   // FILE MODE → generate DB for each video
   if (source === 'file') {
+    ensureDir(dbFileDir);
+
     if (!fs.existsSync(videoDir)) {
       throw new Error('❌ video folder not found');
     }
@@ -35,13 +76,17 @@ const db = (mode) => {
 
     for (const file of files) {
       const full = path.join(videoDir, file);
-      if (fs.statSync(full).isFile() && isVideo(full)) {
-        sourceList.push({
-          type: 'file',
-          path: full,
-          name: path.parse(file).name,
-        });
+
+      if (!fs.statSync(full).isFile() || !isVideo(full)) {
+        continue;
       }
+
+      sourceList.push({
+        type: 'file',
+        path: full,
+        name: path.parse(file).name,
+        outDir: dbFileDir,
+      });
     }
 
     if (!sourceList.length) {
@@ -51,16 +96,19 @@ const db = (mode) => {
 
   // RTSP MODE → single DB for RTSP stream
   else if (source === 'rtsp') {
+    ensureDir(dbRtspDir);
+
     if (!fs.existsSync(rtspPath)) {
       throw new Error('❌ rtsp.json not found');
     }
 
-    const rtsp = JSON.parse(fs.readFileSync(rtspPath, 'utf8'));
+    const full = JSON.parse(fs.readFileSync(rtspPath, 'utf8'));
 
     sourceList.push({
       type: 'rtsp',
-      path: rtsp,
-      name: 'rtsp',
+      path: full,
+      name: `rtsp-${timestamp()}`,
+      outDir: dbRtspDir,
     });
   } else {
     throw new Error('❌ Invalid source mode');
@@ -150,7 +198,7 @@ const db = (mode) => {
     };
 
     const outputName = `${src.name}.${type}.db`;
-    const outputPath = path.join(dbDir, outputName);
+    const outputPath = path.join(src.outDir, outputName);
 
     fs.writeFileSync(outputPath, JSON.stringify(dbData, null, 2));
 
