@@ -3,4 +3,4 @@ src/engine/draw.log
 src/engine/drawLine
 src/engine/aiMediaConnector
 src/engine/library/*
-!src/engine/library/library.txt
+!src/engine/library/empty.txt

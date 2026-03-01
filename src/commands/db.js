@@ -1,14 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const { rgb, timestamp, isVideo } = require('../utils');
-
-const removeEmptyTxt = (dir) => {
-  const file = path.join(dir, 'empty.txt');
-  if (fs.existsSync(file)) {
-    fs.unlinkSync(file);
-  }
-};
+const { rgb, timestamp, isVideo, removeEmpty } = require('../utils');
 
 const ensureDir = (dir) => {
   if (!fs.existsSync(dir)) {
@@ -22,15 +15,15 @@ const listDbFiles = (dir) => {
     return;
   }
 
-  const files = fs.readdirSync(dir).filter((f) => f.endsWith('.db'));
+  const files = fs.readdirSync(dir).filter((file) => file.endsWith('.db'));
 
   if (!files.length) {
     console.log('No DB files found');
     return;
   }
 
-  files.forEach((f, i) => {
-    console.log(`[${i}] ${f}`);
+  files.forEach((file, index) => {
+    console.log(`[${index}] ${file}`);
   });
 };
 
@@ -38,18 +31,19 @@ const db = (mode) => {
   const root = process.cwd();
 
   const videoDir = path.join(root, 'video');
-  removeEmptyTxt(videoDir);
+  removeEmpty(videoDir);
 
   const dbRoot = path.join(root, 'db');
-  removeEmptyTxt(dbRoot);
+  removeEmpty(dbRoot);
 
   const dbFileDir = path.join(dbRoot, 'file');
   const dbRtspDir = path.join(dbRoot, 'rtsp');
 
-  const linePath = path.join(root, 'line.json');
-  const zonePath = path.join(root, 'zone.json');
-  const rtspPath = path.join(root, 'rtsp.json');
-  const generalPath = path.join(root, 'general.json');
+	const configDir = path.join(root, 'config');
+  const linePath = path.join(configDir, 'line.json');
+  const zonePath = path.join(configDir, 'zone.json');
+  const rtspPath = path.join(configDir, 'rtsp.json');
+  const generalPath = path.join(configDir, 'general.json');
 
   const [type, source] = mode.split(':');
 

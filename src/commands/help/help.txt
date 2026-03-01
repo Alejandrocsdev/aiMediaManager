@@ -1,0 +1,36 @@
+AI MEDIA MANAGER — COMMANDS
+===========================
+
+DRAWING
+-------
+
+draw:check		Display captured drawing points from draw.log
+draw:file		Draw lines/zones on a local video
+draw:rtsp		Draw lines/zones on RTSP stream
+
+DB FILE
+-------
+
+db:list:file		List all DB files generated from video sources
+db:list:rtsp		List all DB files generated from RTSP sources
+
+db:line:file		Create DB for each video in ./video
+db:line:rtsp		Create DB for RTSP stream using rtsp.json
+
+db:zone:file		Create DB for each video in ./video
+db:zone:rtsp		Create DB for RTSP stream
+
+RUN ENGINE
+----------
+
+run:file		Run aiMediaConnector using first DB in ./db/file
+run:file <index>	Run DB at specified index from db:list:file
+
+run:rtsp		Run aiMediaConnector using first DB in ./db/rtsp
+run:rtsp <index>	Run DB at specified index from db:list:rtsp
+
+run:batch:N		Run DB files in parallel batches of N at a time
+
+HELP
+-------
+help			Show this message

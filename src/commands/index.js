@@ -1,4 +1,6 @@
 const db = require('./db');
+const run = require('./run');
+const help = require('./help');
 const draw = require('./draw');
 
 const commands = (argv) => {
@@ -17,6 +19,8 @@ const commands = (argv) => {
   }
 
   switch (command) {
+    case 'help':
+      return help();
     case 'draw:check':
       return draw('check');
     case 'draw:file':
@@ -35,7 +39,17 @@ const commands = (argv) => {
       return db('zone:file');
     case 'db:zone:rtsp':
       return db('zone:rtsp');
+    case 'run:file':
+      return run('file', args[1]);
+    case 'run:rtsp':
+      return run('rtsp', args[1]);
   }
+
+  if (command.startsWith('run:batch:')) {
+    const size = command.split(':')[2];
+    return run('batch', size);
+  }
+
   throw new Error(`❌ Unknown or malformed command: "${command}"`);
 };
 

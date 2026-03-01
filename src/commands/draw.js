@@ -9,8 +9,9 @@ const draw = (mode) => {
 
   const videoDir = path.join(root, 'video');
 	
-  const rtspPath = path.join(root, 'rtsp.json');
-  const generalPath = path.join(root, 'general.json');
+	const configDir = path.join(root, 'config');
+  const rtspPath = path.join(configDir, 'rtsp.json');
+  const generalPath = path.join(configDir, 'general.json');
 
   const engineDir = path.join(root, 'src', 'engine');
   const drawLinePath = path.join(engineDir, 'drawLine');
