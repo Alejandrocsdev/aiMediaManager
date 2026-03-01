@@ -1,40 +1,196 @@
 # aiMediaManager
 
-## 🖥️ 作業系統
-Ubuntu 22.04
+A command‑line tool to generate configuration databases and run AI media processing using **aiMediaConnector**.
 
-## ⚙️ 必要套件安裝
+This utility helps prepare `.db` files for video files or RTSP streams, draw detection zones/lines, and execute the engine in batch or single mode.
+
+---
+
+## Requirements
+
+Before using this tool, ensure the following are installed:
+
+### System Dependencies
+
+- **Node.js ≥ 18**
+- **FFmpeg** (must include `ffprobe`)
+- **libtbb-dev**
+- Linux environment (tested on Ubuntu 24.04)
+
+Install on Ubuntu:
+
 ```bash
-sudo apt install libtbb-dev curl
+sudo apt update
+sudo apt install ffmpeg libtbb-dev
 ```
 
-## 🧰 安裝 Node.js
+Verify:
 
-#### 安裝 NVM
 ```bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+node -v
+ffmpeg -version
+ffprobe -version
 ```
 
-#### 加入啟動腳本到 .bashrc
-```bash
-echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.bashrc
-echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> ~/.bashrc
-echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> ~/.bashrc
-source ~/.bashrc
+---
+
+## Engine Requirements
+
+The following binaries must be placed under:
+
+```
+./src/engine/
 ```
 
-#### 安裝最新版 LTS 的 Node.js 並設為預設
-```bash
-nvm install --lts
-nvm alias default lts/*
+Required files:
+
+```
+aiMediaConnector
+drawLine
+library/   (all required shared libraries)
 ```
 
-## 🔐 設定執行權限
+---
+
+## Installation
+
+Clone your repository and install Node dependencies (if any):
+
 ```bash
-chmod +x .aiMediaConnector/aiMediaConnector
+git clone <repo>
+cd aiMediaManager
 ```
 
-## 🚀 執行指令 (參閱指令說明)
+No additional npm packages are required unless your project uses them.
+
+---
+
+## Usage
+
+Run the CLI with:
+
+```bash
+node aiMediaManager.js <command>
+```
+
+To see all available commands:
+
 ```bash
 node aiMediaManager.js help
 ```
+
+---
+
+## Main Features
+
+### Draw Detection Points
+
+Launch drawing tool using video or RTSP:
+
+```bash
+node aiMediaManager.js draw:file
+node aiMediaManager.js draw:rtsp
+```
+
+Check saved coordinates:
+
+```bash
+node aiMediaManager.js draw:check
+```
+
+---
+
+### Generate Database Files
+
+Generate DBs for videos:
+
+```bash
+node aiMediaManager.js db:line:file
+node aiMediaManager.js db:zone:file
+```
+
+Generate DB for RTSP stream:
+
+```bash
+node aiMediaManager.js db:line:rtsp
+node aiMediaManager.js db:zone:rtsp
+```
+
+List generated DBs:
+
+```bash
+node aiMediaManager.js db:list:file
+node aiMediaManager.js db:list:rtsp
+```
+
+---
+
+### Run aiMediaConnector
+
+Run using first available DB:
+
+```bash
+node aiMediaManager.js run:file
+node aiMediaManager.js run:rtsp
+```
+
+Run specific DB by index:
+
+```bash
+node aiMediaManager.js run:file 2
+node aiMediaManager.js run:rtsp 0
+```
+
+Batch execution (run multiple DBs simultaneously):
+
+```bash
+node aiMediaManager.js run:batch:<N>
+```
+
+Example — run 3 at a time:
+
+```bash
+node aiMediaManager.js run:batch:3
+```
+
+---
+
+## Notes
+
+- Video files are automatically validated using `ffprobe`
+- DB files are generated per video
+- RTSP DBs are timestamped
+- Engine runs with `LD_LIBRARY_PATH` pointing to the bundled libraries
+
+---
+
+## Troubleshooting
+
+### Engine fails to start
+
+Ensure:
+
+- Executables have permission:
+
+```bash
+chmod +x src/engine/aiMediaConnector
+chmod +x src/engine/drawLine
+```
+
+- Libraries exist in:
+
+```
+src/engine/library/
+```
+
+---
+
+## License
+
+See LICENSE file for details.
+
+---
+
+## Author
+
+Alex Chen
