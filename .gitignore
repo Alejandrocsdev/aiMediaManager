@@ -1,9 +1,8 @@
 db/*
 videos/*
-
 src/engine/library/*
-!db/empty.txt
 
+!db/empty.txt
 !videos/empty.txt
 !src/engine/library/empty.txt
 
