@@ -11,7 +11,7 @@
   // 警報區域顏色(black, white, yellow, red, green, blue)
   "alert_color": "red",
 
-	// 區域多邊形座標點陣列，至少3點
+  // 區域多邊形座標點陣列，至少3點
   "polygon": [
     { "x": 386, "y": 198 },
     { "x": 248, "y": 916 },

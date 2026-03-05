@@ -1,0 +1,4 @@
+chmod +x ./src/engine/drawLine
+chmod +x ./src/engine/aiMediaConnector
+
+node aiMediaManager.js help

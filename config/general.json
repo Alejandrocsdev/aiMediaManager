@@ -1,6 +1,6 @@
 {
 	"show": true,
-	"enable_log": false,
+	"enable_log": true,
   "ratio": 0.5,
   "use_gpu": true,
   "fps": 30,

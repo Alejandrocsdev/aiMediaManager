@@ -7,7 +7,7 @@ const { isVideo } = require('../utils');
 const draw = (mode) => {
   const root = process.cwd();
 
-  const videoDir = path.join(root, 'video');
+  const videosDir = path.join(root, 'videos');
 	
 	const configDir = path.join(root, 'config');
   const rtspPath = path.join(configDir, 'rtsp.json');
@@ -43,16 +43,16 @@ const draw = (mode) => {
 
   // FILE MODE
   if (mode === 'file') {
-    if (!fs.existsSync(videoDir)) {
-      throw new Error('❌ video folder not found');
+    if (!fs.existsSync(videosDir)) {
+      throw new Error('❌ videos folder not found');
     }
 
-    const files = fs.readdirSync(videoDir);
+    const files = fs.readdirSync(videosDir);
 
     let videoPath = null;
 
     for (const file of files) {
-      const full = path.join(videoDir, file);
+      const full = path.join(videosDir, file);
       if (fs.statSync(full).isFile() && isVideo(full)) {
         videoPath = full;
         break;

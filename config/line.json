@@ -1,8 +1,8 @@
 [
   {
     "line_caption": "One",
-    "line_start": { "x": 0, "y": 100 },
-    "line_end": { "x": 100, "y": 200 },
+    "line_start": { "x": 1526, "y": 930 },
+    "line_end": { "x": 172, "y": 924 },
     "line_color": "black",
     "cross_direction": "DIRECTION_DEFAULT"
   },

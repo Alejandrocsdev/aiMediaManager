@@ -30,8 +30,8 @@ const listDbFiles = (dir) => {
 const db = (mode) => {
   const root = process.cwd();
 
-  const videoDir = path.join(root, 'video');
-  removeEmpty(videoDir);
+  const videosDir = path.join(root, 'videos');
+  removeEmpty(videosDir);
 
   const dbRoot = path.join(root, 'db');
   removeEmpty(dbRoot);
@@ -62,14 +62,14 @@ const db = (mode) => {
   if (source === 'file') {
     ensureDir(dbFileDir);
 
-    if (!fs.existsSync(videoDir)) {
-      throw new Error('❌ video folder not found');
+    if (!fs.existsSync(videosDir)) {
+      throw new Error('❌ videos folder not found');
     }
 
-    const files = fs.readdirSync(videoDir);
+    const files = fs.readdirSync(videosDir);
 
     for (const file of files) {
-      const full = path.join(videoDir, file);
+      const full = path.join(videosDir, file);
 
       if (!fs.statSync(full).isFile() || !isVideo(full)) {
         continue;

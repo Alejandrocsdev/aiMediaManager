@@ -1,6 +1,14 @@
-video/test-01.mp4
+db/*
+videos/*
+
+src/engine/library/*
+!db/empty.txt
+
+!videos/empty.txt
+!src/engine/library/empty.txt
+
 src/engine/draw.log
 src/engine/drawLine
 src/engine/aiMediaConnector
-src/engine/library/*
-!src/engine/library/empty.txt
+
+count.log

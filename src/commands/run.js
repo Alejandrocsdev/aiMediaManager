@@ -2,6 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const { spawn } = require('child_process');
 
+const updateCountLog = require('../countLog');
+
 const { removeEmpty } = require('../utils');
 
 const runConnector = (enginePath, dbPath, libPath) => {
@@ -63,6 +65,10 @@ const run = async (mode, arg) => {
     console.log(`Running: ${path.basename(dbPath)}`);
 
     await runConnector(enginePath, dbPath, libPath);
+
+		// update after single run
+		updateCountLog();
+
     return;
   }
 
@@ -90,6 +96,9 @@ const run = async (mode, arg) => {
       await Promise.all(
         batch.map((dbPath) => runConnector(enginePath, dbPath, libPath)),
       );
+
+			// update after batch
+			updateCountLog();
     }
 
     console.log('🟢 All batches completed');

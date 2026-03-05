@@ -1,5 +1,10 @@
+===========================
 AI MEDIA MANAGER — COMMANDS
 ===========================
+
+--------------------------------
+node aiMediaManager.js <command>
+--------------------------------
 
 DRAWING
 -------
@@ -14,10 +19,10 @@ DB FILE
 db:list:file		List all DB files generated from video sources
 db:list:rtsp		List all DB files generated from RTSP sources
 
-db:line:file		Create DB for each video in ./video
+db:line:file		Create DB for each video in ./videos
 db:line:rtsp		Create DB for RTSP stream using rtsp.json
 
-db:zone:file		Create DB for each video in ./video
+db:zone:file		Create DB for each video in ./videos
 db:zone:rtsp		Create DB for RTSP stream
 
 RUN ENGINE
@@ -33,4 +38,5 @@ run:batch:N		Run DB files in parallel batches of N at a time
 
 HELP
 -------
+
 help			Show this message
