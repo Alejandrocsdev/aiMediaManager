@@ -19,11 +19,11 @@ DB FILE
 db:list:file		List all DB files generated from video sources
 db:list:rtsp		List all DB files generated from RTSP sources
 
-db:line:file		Create DB for each video in ./videos
-db:line:rtsp		Create DB for RTSP stream using rtsp.json
+db:line:file		Create line DB for each video in ./videos
+db:line:rtsp		Create line DB for RTSP stream using rtsp.json
 
-db:zone:file		Create DB for each video in ./videos
-db:zone:rtsp		Create DB for RTSP stream
+db:zone:file		Create zone DB for each video in ./videos
+db:zone:rtsp		Create zone DB for RTSP stream
 
 RUN ENGINE
 ----------
