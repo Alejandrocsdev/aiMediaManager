@@ -40,14 +40,24 @@ const commands = (argv) => {
     case 'db:zone:rtsp':
       return db('zone:rtsp');
     case 'run:file':
-      return run('file', args[1]);
+      return run('file:0');
     case 'run:rtsp':
-      return run('rtsp', args[1]);
+      return run('rtsp:0');
+  }
+
+  if (command.startsWith('run:file:')) {
+    const size = command.split(':')[2];
+    return run(`file:${size}`);
+  }
+
+  if (command.startsWith('run:rtsp:')) {
+    const size = command.split(':')[2];
+    return run(`rtsp:${size}`);
   }
 
   if (command.startsWith('run:batch:')) {
     const size = command.split(':')[2];
-    return run('batch', size);
+    return run(`batch:${size}`);
   }
 
   throw new Error(`❌ Unknown or malformed command: "${command}"`);

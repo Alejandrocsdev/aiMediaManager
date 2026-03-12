@@ -39,7 +39,7 @@ const db = (mode) => {
   const dbFileDir = path.join(dbRoot, 'file');
   const dbRtspDir = path.join(dbRoot, 'rtsp');
 
-	const configDir = path.join(root, 'config');
+  const configDir = path.join(root, 'config');
   const linePath = path.join(configDir, 'line.json');
   const zonePath = path.join(configDir, 'zone.json');
   const rtspPath = path.join(configDir, 'rtsp.json');
@@ -71,7 +71,11 @@ const db = (mode) => {
     for (const file of files) {
       const full = path.join(videosDir, file);
 
-      if (!fs.statSync(full).isFile() || !isVideo(full)) {
+      if (
+        !fs.statSync(full).isFile() ||
+        full.endsWith('.log') ||
+        !isVideo(full)
+      ) {
         continue;
       }
 

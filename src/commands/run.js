@@ -30,7 +30,7 @@ const getDbFiles = (dir) => {
     .map((file) => path.join(dir, file));
 };
 
-const run = async (mode, arg) => {
+const run = async (mode) => {
   const root = process.cwd();
 
   const enginePath = path.join(root, 'src/engine/aiMediaConnector');
@@ -45,16 +45,18 @@ const run = async (mode, arg) => {
     throw new Error('❌ aiMediaConnector not found');
   }
 
+	const [type, size] = mode.split(':');
+
   // FILE MODE
-  if (mode === 'file' || mode === 'rtsp') {
-    const dbDir = mode === 'file' ? dbFileDir : dbRtspDir;
+  if (type === 'file' || type === 'rtsp') {
+    const dbDir = type === 'file' ? dbFileDir : dbRtspDir;
     const dbFiles = getDbFiles(dbDir);
 
     if (!dbFiles.length) {
       throw new Error('❌ No DB files found');
     }
 
-    const index = arg ? parseInt(arg, 10) : 0;
+    const index = size ? parseInt(size, 10) : 0;
 
     if (isNaN(index) || index < 0 || index >= dbFiles.length) {
       throw new Error('❌ Invalid DB index');
@@ -73,8 +75,8 @@ const run = async (mode, arg) => {
   }
 
   // BATCH MODE
-  if (mode === 'batch') {
-    const batchSize = parseInt(arg, 10);
+  if (type === 'batch') {
+    const batchSize = parseInt(size, 10);
 
     if (!batchSize || batchSize <= 0) {
       throw new Error('❌ Invalid batch size');

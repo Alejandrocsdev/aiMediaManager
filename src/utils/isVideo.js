@@ -9,7 +9,7 @@ const isVideo = (file) => {
     '-show_entries',
     'stream=codec_type',
     '-of',
-    'csv=p=0',
+    'default=nw=1:nk=1',
     file,
   ]);
 
