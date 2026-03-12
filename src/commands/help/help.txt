@@ -29,10 +29,10 @@ RUN ENGINE
 ----------
 
 run:file		Run aiMediaConnector using first DB in ./db/file
-run:file <index>	Run DB at specified index from db:list:file
+run:file:N		Run DB at specified index from db:list:file
 
 run:rtsp		Run aiMediaConnector using first DB in ./db/rtsp
-run:rtsp <index>	Run DB at specified index from db:list:rtsp
+run:rtsp:N		Run DB at specified index from db:list:rtsp
 
 run:batch:N		Run DB files in parallel batches of N at a time
 
